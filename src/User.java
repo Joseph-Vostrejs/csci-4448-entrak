@@ -1,4 +1,3 @@
-
 public class User {
 
 	protected String name;

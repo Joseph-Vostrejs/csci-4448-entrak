@@ -16,11 +16,34 @@ public class Event {
 
 	}
 
-	void CreateEvent(Date start, Date end,String loc)
-	{
-		this.startTime = start;
-		this.endTime = end;
-		this.location = loc;
+
+	Date getStartTime() {
+		return startTime;
+	}
+
+
+	void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+
+
+	Date getEndTime() {
+		return endTime;
+	}
+
+
+	void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+
+
+	String getLocation() {
+		return location;
+	}
+
+
+	void setLocation(String location) {
+		this.location = location;
 	}
 	
 	
