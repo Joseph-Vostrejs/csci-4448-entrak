@@ -8,23 +8,28 @@ public class ToDoList {
 		itemsToDo.add(item);
 	}
 	
-	public ArrayList<String> getItemsToDo() {
+	ArrayList<String> getItemsToDo() {
 		return itemsToDo;
 	}
 	
-	public void setItemsToDo(ArrayList<String> itemsToDo) {
+	void setItemsToDo(ArrayList<String> itemsToDo) {
 		this.itemsToDo = itemsToDo;
 	}
 	
-	public User getOwner() {
+	User getOwner() {
 		return owner;
 	}
 	
-	public void setOwner(User owner) {
+	void setOwner(User owner) {
 		this.owner = owner;
 	}
 	
 	void removeItem(String item){
 		itemsToDo.remove(item);
+	}
+	
+	void editItem(String item, String newitem){
+		int index = itemsToDo.indexOf(item);
+		itemsToDo.set(index, newitem);
 	}
 }
