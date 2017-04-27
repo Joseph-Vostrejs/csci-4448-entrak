@@ -36,7 +36,11 @@ public class User {
 		try{
 		DB.post(query);
 		}catch(Exception e){System.out.println(e);}
-	
+		this.firstName = firstname;
+		this.lastName = lastname;
+		this.username = username;
+		this.password = password;
+		this.email = email;
 	}
 	
 	/**
