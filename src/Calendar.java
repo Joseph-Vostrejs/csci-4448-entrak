@@ -3,6 +3,7 @@ public class Calendar {
 	protected User owner;
 	protected String permissions;
 	protected Event[] events;
+
 	
 	User getOwner() {
 		return owner;
@@ -39,8 +40,9 @@ public class Calendar {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
-
+	public static void main(String[] args) throws Exception {
+		DB.getConnection();
+		System.out.println("WORKING");
 	}
 
 }

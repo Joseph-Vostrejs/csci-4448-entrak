@@ -11,6 +11,8 @@ public class DB {
 	public static void main(String[] args) throws Exception 
 	{
 	createTable();
+	post();
+	
 	}
 	
 	public static Connection getConnection() throws Exception{
@@ -30,17 +32,23 @@ public class DB {
 		
 		return null;
 	}
-/**
+
 	public static void post() throws Exception{
 		final String var1 = "John";
 		final String var2 = "Miller";
 		try
 		{
 		Connection con = getConnection();
-		PreparedStatement posted = con.prepareStatement("INSERT INTO )
-		}	
+		PreparedStatement posted = con.prepareStatement("INSERT INTO table1 (first,last) VALUES ('"+var1+"','"+var2+"')");
+		posted.executeUpdate();
+		}catch(Exception e){System.out.println(e);}
+	finally{
+		System.out.println("Insert Completed.");
 	}
-**/	
+	
+	
+	}
+
 	public static void createTable() throws Exception{
 		try{
 			Connection conn = getConnection();
