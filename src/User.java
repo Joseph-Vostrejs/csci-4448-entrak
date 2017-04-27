@@ -1,18 +1,11 @@
 public class User {
 
-	protected String name;
+	protected String firstName;
+	protected String lastName;
 	private String username;
 	private String password;
 	protected String email;
 	
-	String getName() {
-		return name;
-	}
-
-	void setName(String name) {
-		this.name = name;
-	}
-
 	String getUsername() {
 		return username;
 	}
@@ -37,12 +30,21 @@ public class User {
 		this.email = email;
 	}
 
+	public User(String firstname, String lastname, String username, String password, String email)
+	{
+		String query = "INSERT INTO Users (first,last,username,password,email) VALUES ('"+firstname+"','"+lastname+"','"+username+"','"+password+"','"+email+"')";
+		try{
+		DB.post(query);
+		}catch(Exception e){System.out.println(e);}
+	
+	}
+	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		new User("nathan","welch","welchnathan","password","fakeemail@colorado.edu");
 	}
 
 }

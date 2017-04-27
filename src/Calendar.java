@@ -1,6 +1,7 @@
 public class Calendar {
 	
 	protected User owner;
+	protected String calendarName;
 	protected String permissions;
 	protected Event[] events;
 
@@ -41,7 +42,7 @@ public class Calendar {
 	 * @param args
 	 */
 	public static void main(String[] args) throws Exception {
-		DB.getConnection();
+		//DB.getConnection();
 		System.out.println("WORKING");
 	}
 

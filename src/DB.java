@@ -10,15 +10,15 @@ public class DB {
 	 */
 	public static void main(String[] args) throws Exception 
 	{
-	createTable();
-	post();
+	//createTable();
+	//post();
 	
 	}
 	
 	public static Connection getConnection() throws Exception{
 		try{
 			String driver = "com.mysql.jdbc.Driver";
-			String url = "jdbc:mysql://localhost:3306/OOTest";
+			String url = "jdbc:mysql://localhost:3306/entrak";
 			String username = "Nathan@localhost";
 			String password = "4448";
 			Class.forName(driver);
@@ -33,13 +33,11 @@ public class DB {
 		return null;
 	}
 
-	public static void post() throws Exception{
-		final String var1 = "John";
-		final String var2 = "Miller";
+	public static void post(String query) throws Exception{
 		try
 		{
 		Connection con = getConnection();
-		PreparedStatement posted = con.prepareStatement("INSERT INTO table1 (first,last) VALUES ('"+var1+"','"+var2+"')");
+		PreparedStatement posted = con.prepareStatement(query);
 		posted.executeUpdate();
 		}catch(Exception e){System.out.println(e);}
 	finally{
