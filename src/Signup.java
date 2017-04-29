@@ -23,6 +23,13 @@ public class Signup extends JFrame implements ActionListener{
 	private JLabel emlabel = new JLabel("email:");
 	private JButton enter = new JButton("sign up");
 	
+	
+	private JPanel cards;
+	private JPanel cal = new JPanel();
+	private JPanel todo = new JPanel();
+	private JPanel groups = new JPanel();
+	
+	
 	public Signup() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -38,27 +45,32 @@ public class Signup extends JFrame implements ActionListener{
 		add(passwordField);
 		add(emlabel);
 		add(emailField);
-		
 		add(enter);
+		
 		setSize(1000,1000);
 		
 		enter.addActionListener(this);
 		
-	    pack();
-	    setVisible(true);
+		pack();
+		setVisible(true);
 	}
 	
 	public void actionPerformed(ActionEvent e){
-		new User(firstnameField.getText(),lastnameField.getText(),usernameField.getText(),
+		User current = new User(firstnameField.getText(),lastnameField.getText(),usernameField.getText(),
 		passwordField.getText(),emailField.getText());
+		
+		Menu.launchMenu(current);
 	}
+	
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) 
 	{
+		
 		new Signup();
+		
 	}
 
 }
