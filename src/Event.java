@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.sql.*;
 
 public class Event {
 
@@ -30,6 +31,17 @@ public class Event {
 		}catch(Exception e){System.out.println(e);}
 		
 		
+	}
+	
+	ResultSet getEvents(String owner, String calendarName, String eventName)
+	{
+		String query = "SELECT * FROM Calendars WHERE owner='"+owner+"' AND calendarName='"+calendarName+"' AND eventName='"+eventName+"'";
+		try
+		{
+		ResultSet rs = DB.select(query);
+		return rs;
+		}catch(Exception e){System.out.println(e);}
+		return null;
 	}
 	
 	String getEventName(){
