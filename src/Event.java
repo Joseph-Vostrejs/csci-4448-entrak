@@ -15,9 +15,7 @@ public class Event {
 	public static void main(String[] args) 
 	{
 		// TODO Auto-generated method stub
-
 	}
-
 
 	String getEventName(){
 		return EventName;
@@ -27,26 +25,21 @@ public class Event {
 		return startTime;
 	}
 
-
 	void setStartTime(Date startTime) {
 		this.startTime = startTime;
 	}
-
 
 	Date getEndTime() {
 		return endTime;
 	}
 
-
 	void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
 
-
 	String getLocation() {
 		return location;
 	}
-
 
 	void setLocation(String location) {
 		this.location = location;

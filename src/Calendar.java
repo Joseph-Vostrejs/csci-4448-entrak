@@ -1,3 +1,4 @@
+import java.sql.*;
 public class Calendar {
 	
 	protected User owner;
@@ -13,11 +14,17 @@ public class Calendar {
 	void setOwner(User owner) {
 		this.owner = owner;
 	}
-
-	String getPermissions() {
-		return permissions;
+	
+	String getPermissions(String User) {
+		String query = "SELECT permissions FROM Calendars WHERE owner='"+User+"'";
+		try
+		{
+		ResultSet rs = DB.select(query);
+		return rs.getString("permissions");
+		}catch(Exception e){System.out.println(e);}
+		return null;
 	}
-
+	
 	void setPermissions(String permissions) {
 		this.permissions = permissions;
 	}

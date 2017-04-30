@@ -47,7 +47,7 @@ public class DB {
 	}
 	}
 	
-	public ResultSet select(String query) throws Exception{
+	public static ResultSet select(String query) throws Exception{
 		try
 		{
 		Connection con = getConnection();
