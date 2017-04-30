@@ -1,33 +1,48 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.sql.*;
 
 public class Menu implements ItemListener {
-    JPanel cards; //a panel that uses CardLayout
+    JPanel cards;
     final static String CALENDARPANEL = "calendar";
     final static String GROUPSPANEL = "groups";
     final static String TODOPANEL = "to do list";
     
-    public void addComponentToPane(Container pane) {
-        //Put the JComboBox in a JPanel to get a nicer look.
-        JPanel comboBoxPane = new JPanel(); //use FlowLayout
+    public void addComponentToPane(Container pane, User current) {
+        JPanel comboBoxPane = new JPanel();
         String comboBoxItems[] = { CALENDARPANEL, GROUPSPANEL, TODOPANEL };
         JComboBox cb = new JComboBox(comboBoxItems);
         cb.setEditable(false);
         cb.addItemListener(this);
         comboBoxPane.add(cb);
         
-        //Create the "cards".
+        
+        
         JPanel calcard = new JPanel();
-        calcard.add(new JLabel("-Calendar Info-"));
+        calcard.add(new JLabel("Calendar"));
+		String query4 = "SELECT calendarName FROM Calendars WHERE owner = '" + current + "'";
+        try{
+        	//calcard.add(new JLabel("a thing"));
+        	ResultSet q4rs = DB.select(query4);
+        	calcard.add(new JLabel(q4rs.getString("calendarName")));
+        	String query5 = "SELECT EventName, startTime, endTime, location FROM Events WHERE Cal = '" + q4rs.getString("calendarName") + "'";
+        	try{
+        		ResultSet q5rs = DB.select(query5);
+        		while(q5rs.next()){
+        			calcard.add(new JLabel(q5rs.getString("EventName")+" from "+q5rs.getDate("startTime")+" to "+q5rs.getDate("endTime")+" at "+q5rs.getString("location")));
+        		}
+        	}catch(Exception e){System.out.println(e);}
+        }catch(Exception e){System.out.println(e);}
+        
         
         JPanel groupcard = new JPanel();
-        groupcard.add(new JLabel("-groups info-"));
+        groupcard.add(new JLabel("Groups"));
         
         JPanel todocard = new JPanel();
-        todocard.add(new JLabel("-to do list info-"));
+        todocard.add(new JLabel("To Do List"));
         
-        //Create the panel that contains the "cards".
+        
         cards = new JPanel(new CardLayout());
         cards.add(calcard, CALENDARPANEL);
         cards.add(groupcard, GROUPSPANEL);
@@ -42,11 +57,6 @@ public class Menu implements ItemListener {
         cl.show(cards, (String)evt.getItem());
     }
     
-    /**
-     * Create the GUI and show it.  For thread safety,
-     * this method should be invoked from the
-     * event dispatch thread.
-     */
     public static void launchMenu(User current) {
         //Create and set up the window.
         JFrame frame = new JFrame("CardLayoutDemo");
@@ -54,7 +64,7 @@ public class Menu implements ItemListener {
         
         //Create and set up the content pane.
         Menu menu = new Menu();
-        menu.addComponentToPane(frame.getContentPane());
+        menu.addComponentToPane(frame.getContentPane(), current);
         
         //Display the window.
         frame.pack();

@@ -2,13 +2,11 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Date;
 
 
 public class Signup extends JFrame implements ActionListener{
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private JLabel logo = new JLabel("entrak");
 	private JTextField firstnameField = new JTextField(20);
@@ -22,13 +20,6 @@ public class Signup extends JFrame implements ActionListener{
 	private JLabel pwlabel = new JLabel("password:");
 	private JLabel emlabel = new JLabel("email:");
 	private JButton enter = new JButton("sign up");
-	
-	
-	private JPanel cards;
-	private JPanel cal = new JPanel();
-	private JPanel todo = new JPanel();
-	private JPanel groups = new JPanel();
-	
 	
 	public Signup() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,6 +49,11 @@ public class Signup extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e){
 		User current = new User(firstnameField.getText(),lastnameField.getText(),usernameField.getText(),
 		passwordField.getText(),emailField.getText());
+		
+		Calendar curcal = new Calendar(current, "basic", "");
+		new Event(curcal, "presentation", Date.valueOf("2017-05-01"), Date.valueOf("2017-05-02"), "the Engineering Center");
+		
+		//dispatchEvent(new WindowEvent(JFrame, WindowEvent.WINDOW_CLOSING));
 		
 		Menu.launchMenu(current);
 	}
