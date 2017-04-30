@@ -9,7 +9,18 @@ public class Menu implements ItemListener {
     final static String GROUPSPANEL = "groups";
     final static String TODOPANEL = "to do list";
     
-    public void addComponentToPane(Container pane, User current) {
+
+    private JTextField event = new JTextField(20);
+    private JTextField start = new JTextField();
+    private JTextField end = new JTextField();
+    private JTextField place = new JTextField(20);
+    private JLabel eventl = new JLabel("event:");
+    private JLabel startl = new JLabel("start:");
+    private JLabel endl = new JLabel("end: (these are facades for now)");
+    private JLabel placel = new JLabel("location:");
+    private JButton newEventButton = new JButton("add event");
+    
+    public void addComponentToPane(Container pane, User current, final Calendar curcal) {
         JPanel comboBoxPane = new JPanel();
         String comboBoxItems[] = { CALENDARPANEL, GROUPSPANEL, TODOPANEL };
         JComboBox cb = new JComboBox(comboBoxItems);
@@ -21,6 +32,24 @@ public class Menu implements ItemListener {
         
         JPanel calcard = new JPanel();
         calcard.add(new JLabel("Calendar"));
+        newEventButton.addActionListener(
+        	new ActionListener() {
+        		public void actionPerformed( ActionEvent e) {
+        			new Event(curcal, event.getText(), Date.valueOf("2017-05-01"), Date.valueOf("2017-05-02"), place.getText());
+        		}
+        	}
+        );
+        
+        calcard.add(eventl);
+        calcard.add(event);
+        calcard.add(startl);
+        calcard.add(start);
+        calcard.add(endl);
+        calcard.add(end);
+        calcard.add(placel);
+        calcard.add(place);
+        calcard.add(newEventButton);
+        
 		String query4 = "SELECT calendarName FROM Calendars WHERE owner = '" + current + "'";
         try{
         	//calcard.add(new JLabel("a thing"));
@@ -57,14 +86,14 @@ public class Menu implements ItemListener {
         cl.show(cards, (String)evt.getItem());
     }
     
-    public static void launchMenu(User current) {
+    public static void launchMenu(User current, Calendar curcal) {
         //Create and set up the window.
         JFrame frame = new JFrame("CardLayoutDemo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         //Create and set up the content pane.
         Menu menu = new Menu();
-        menu.addComponentToPane(frame.getContentPane(), current);
+        menu.addComponentToPane(frame.getContentPane(), current, curcal);
         
         //Display the window.
         frame.pack();
