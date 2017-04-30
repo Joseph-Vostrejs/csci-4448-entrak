@@ -19,44 +19,61 @@ public class Signup extends JFrame implements ActionListener{
 	private JLabel unlabel = new JLabel("username:");
 	private JLabel pwlabel = new JLabel("password:");
 	private JLabel emlabel = new JLabel("email:");
-	private JButton enter = new JButton("sign up");
+	private JButton signUpButton = new JButton("sign up");
+	private JButton signInButton = new JButton("sign in");
 	
 	public Signup() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new FlowLayout(FlowLayout.LEFT));
+		
 
+        signUpButton.addActionListener(
+        	new ActionListener() {
+        		public void actionPerformed( ActionEvent e) {
+        			User current = new User(firstnameField.getText(),lastnameField.getText(),usernameField.getText(),
+        					passwordField.getText(),emailField.getText());
+        					
+        			Calendar curcal = new Calendar(current, "basic", "");
+        			
+        			ToDoList curlist = new ToDoList(current);
+        			
+        			Menu.launchMenu(current, curcal, curlist);
+        		}
+        	}
+        );
+
+        signInButton.addActionListener(
+        	new ActionListener() {
+        		public void actionPerformed( ActionEvent e) {
+        			User current = null;
+        			Calendar curcal = null; //query these to pass
+        			ToDoList curlist = null;
+        			
+        			Menu.launchMenu(current, curcal, curlist);
+        		}
+        	}
+        );
+        
 		add(logo);
-		add(fnlabel);
-		add(firstnameField);
-		add(lnlabel);
-		add(lastnameField);
 		add(unlabel);
 		add(usernameField);
 		add(pwlabel);
 		add(passwordField);
+		add(signInButton);
+		add(fnlabel);
+		add(firstnameField);
+		add(lnlabel);
+		add(lastnameField);
 		add(emlabel);
 		add(emailField);
-		add(enter);
+		add(signUpButton);
 		
 		setSize(1000,1000);
-		
-		enter.addActionListener(this);
 		
 		pack();
 		setVisible(true);
 	}
 	
-	public void actionPerformed(ActionEvent e){
-		User current = new User(firstnameField.getText(),lastnameField.getText(),usernameField.getText(),
-		passwordField.getText(),emailField.getText());
-		
-		Calendar curcal = new Calendar(current, "basic", "");
-		new Event(curcal, "presentation", Date.valueOf("2017-05-01"), Date.valueOf("2017-05-02"), "the Engineering Center");
-		
-		//dispatchEvent(new WindowEvent(JFrame, WindowEvent.WINDOW_CLOSING));
-		
-		Menu.launchMenu(current);
-	}
 	
 	
 	/**
@@ -66,6 +83,12 @@ public class Signup extends JFrame implements ActionListener{
 	{
 		
 		new Signup();
+		
+	}
+
+
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
 		
 	}
 

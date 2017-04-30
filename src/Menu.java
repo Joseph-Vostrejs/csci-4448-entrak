@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.event.ListSelectionListener;
+
 import java.sql.*;
 
 public class Menu implements ItemListener {
@@ -20,7 +22,10 @@ public class Menu implements ItemListener {
     private JLabel placel = new JLabel("location:");
     private JButton newEventButton = new JButton("add event");
     
-    public void addComponentToPane(Container pane, User current, final Calendar curcal) {
+    private JTextField todo = new JTextField(20);
+    private JButton newToDoButton = new JButton("add to do item");
+    
+    public void addComponentToPane(Container pane, User current, final Calendar curcal, final ToDoList curlist) {
         JPanel comboBoxPane = new JPanel();
         String comboBoxItems[] = { CALENDARPANEL, GROUPSPANEL, TODOPANEL };
         JComboBox cb = new JComboBox(comboBoxItems);
@@ -28,18 +33,25 @@ public class Menu implements ItemListener {
         cb.addItemListener(this);
         comboBoxPane.add(cb);
         
-        
-        
-        JPanel calcard = new JPanel();
-        calcard.add(new JLabel("Calendar"));
         newEventButton.addActionListener(
         	new ActionListener() {
         		public void actionPerformed( ActionEvent e) {
         			new Event(curcal, event.getText(), Date.valueOf("2017-05-01"), Date.valueOf("2017-05-02"), place.getText());
         		}
         	}
+        );        
+        
+        newToDoButton.addActionListener(
+           	new ActionListener() {
+           		public void actionPerformed( ActionEvent e) {
+           			//query todo list
+           			curlist.addItem(todo.getText());
+           		}
+          	}
         );
         
+        JPanel calcard = new JPanel();
+        calcard.add(new JLabel("Calendar"));
         calcard.add(eventl);
         calcard.add(event);
         calcard.add(startl);
@@ -70,6 +82,23 @@ public class Menu implements ItemListener {
         
         JPanel todocard = new JPanel();
         todocard.add(new JLabel("To Do List"));
+        todocard.add(todo);
+        todocard.add(newToDoButton);
+        
+        /*
+        DefaultListModel listModel = new DefaultListModel();
+        listModel.addElement("do things");
+        listModel.addElement("do more things");
+        JList list = new JList(listModel);
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list.setSelectedIndex(0);
+        list.addListSelectionListener((ListSelectionListener) this);
+        list.setVisibleRowCount(5);
+        JScrollPane listScrollPane = new JScrollPane(list);
+        todocard.add(listScrollPane);
+        */
+        
+        
         
         
         cards = new JPanel(new CardLayout());
@@ -86,14 +115,14 @@ public class Menu implements ItemListener {
         cl.show(cards, (String)evt.getItem());
     }
     
-    public static void launchMenu(User current, Calendar curcal) {
+    public static void launchMenu(User current, Calendar curcal, ToDoList curlist) {
         //Create and set up the window.
         JFrame frame = new JFrame("CardLayoutDemo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         //Create and set up the content pane.
         Menu menu = new Menu();
-        menu.addComponentToPane(frame.getContentPane(), current, curcal);
+        menu.addComponentToPane(frame.getContentPane(), current, curcal, curlist);
         
         //Display the window.
         frame.pack();
