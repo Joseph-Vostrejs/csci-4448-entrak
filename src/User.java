@@ -2,7 +2,7 @@ public class User {
 
 	protected String firstName;
 	protected String lastName;
-	private String username;
+	protected String username;
 	private String password;
 	protected String email;
 	

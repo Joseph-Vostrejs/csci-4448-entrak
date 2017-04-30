@@ -5,6 +5,8 @@ public class Event {
 	/**
 	 * @param args
 	 */
+	protected Calendar Cal;
+	protected String EventName;
 	protected Date startTime;
 	protected Date endTime;
 	protected String location;
@@ -17,6 +19,10 @@ public class Event {
 	}
 
 
+	String getEventName(){
+		return EventName;
+	}
+	
 	Date getStartTime() {
 		return startTime;
 	}

@@ -33,17 +33,23 @@ public class Calendar {
 	public Calendar() {
 	}
 
-	public Calendar(User owner)
+	public Calendar(User owner,String calendarName,String permissions)
 	{
 		this.owner = owner;
+		this.calendarName = calendarName;
+		this.permissions = permissions;
+		String query = "INSERT INTO Calendars (owner,calendarName,permissions) VALUES ('"+owner.username+"','"+calendarName+"','"+permissions+"')";
+		try{
+		DB.post(query);
+		}catch(Exception e){System.out.println(e);}
 	}
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) throws Exception {
-		//DB.getConnection();
-		System.out.println("WORKING");
+		
+		//System.out.println("WORKING");
 	}
 
 }

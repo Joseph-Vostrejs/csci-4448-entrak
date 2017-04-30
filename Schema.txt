@@ -1,0 +1,5 @@
+Calendars:
+CREATE TABLE Calendars (owner VARCHAR(255),calendarName VARCHAR(255),permissions VARCHAR(255), PRIMARY KEY(owner,calendarName));
+
+Users:
+CREATE TABLE Users (first VARCHAR(255), last VARCHAR(255), username VARCHAR(255), password VARCHAR(255), email VARCHAR(255), PRIMARY KEY(username));

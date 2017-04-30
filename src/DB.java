@@ -2,6 +2,8 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.*;
+
 
 public class DB {
 
@@ -43,9 +45,24 @@ public class DB {
 	finally{
 		System.out.println("Insert Completed.");
 	}
-	
-	
 	}
+	
+	public ResultSet select(String query) throws Exception{
+		try
+		{
+		Connection con = getConnection();
+		PreparedStatement select = con.prepareStatement(query);
+		ResultSet rs = select.executeQuery();
+		return rs;
+		}catch(Exception e){System.out.println("Unable to select: "+e);}
+		finally{
+			System.out.println("Selection Completed.");
+		}
+		return null;
+	}
+		
+		
+	
 
 	public static void createTable() throws Exception{
 		try{
