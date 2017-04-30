@@ -10,7 +10,11 @@ public class Calendar {
 	User getOwner() {
 		return owner;
 	}
-
+	
+	String getCalendarName(){
+		return calendarName;
+	}
+	
 	void setOwner(User owner) {
 		this.owner = owner;
 	}

@@ -3,3 +3,6 @@ CREATE TABLE Calendars (owner VARCHAR(255),calendarName VARCHAR(255),permissions
 
 Users:
 CREATE TABLE Users (first VARCHAR(255), last VARCHAR(255), username VARCHAR(255), password VARCHAR(255), email VARCHAR(255), PRIMARY KEY(username));
+
+Events:
+CREATE TABLE Events (owner VARCHAR(255),calendarName VARCHAR(255),eventName VARCHAR(255), startTime VARCHAR(255), endTime VARCHAR(255), location VARCHAR(255), PRIMARY KEY (owner,calendarName,eventName));
