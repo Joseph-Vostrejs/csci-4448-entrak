@@ -1,9 +1,14 @@
 import java.util.ArrayList;
 
 public class ToDoList {
-	private ArrayList<String> itemsToDo;
+	private ArrayList<String> itemsToDo = new ArrayList<String>();
 	private User owner;
 
+	public ToDoList(User u)
+	{
+		this.owner = u;
+	}
+	
 	void addItem(String item){
 		itemsToDo.add(item);
 	}

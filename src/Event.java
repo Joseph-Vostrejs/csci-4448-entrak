@@ -24,12 +24,17 @@ public class Event {
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.location = location;
+		
 		String owner = Cal.getOwner().getUsername();
-		String query = "INSERT INTO Events (owner,calendarName,eventName,startTime,endTime,location) VALUES ('"+owner+"','"+Cal.getCalendarName()+"','"+EventName+"'.'"+startTime+"','"+endTime+"','"+location+"')";
+		System.out.println(owner);
+		
+		String query = "INSERT INTO Events (owner,calendarName,eventName,startTime,endTime,location) VALUES ('"+owner+"','"+Cal.getCalendarName()+"','"+EventName+"','"+startTime+"','"+endTime+"','"+location+"')";
 		try{
 		DB.post(query);
 		}catch(Exception e){System.out.println(e);}
-		
+	}
+	
+	public Event(){
 		
 	}
 	

@@ -6,7 +6,6 @@ public class Calendar {
 	protected String permissions;
 	protected Event[] events;
 
-	
 	User getOwner() {
 		return owner;
 	}
@@ -58,7 +57,8 @@ public class Calendar {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception 
+	{
 		
 		//System.out.println("WORKING");
 	}

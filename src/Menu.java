@@ -22,7 +22,7 @@ public class Menu implements ItemListener {
     private JTextField place = new JTextField(20);
     private JLabel eventl = new JLabel("event:");
     private JLabel startl = new JLabel("start:");
-    private JLabel endl = new JLabel("end: (these are facades for now)");
+    private JLabel endl = new JLabel("end:");
     private JLabel placel = new JLabel("location:");
     private JButton newEventButton = new JButton("add event");
     
