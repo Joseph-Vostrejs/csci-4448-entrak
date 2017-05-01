@@ -1,8 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.event.ListSelectionListener;
-
+import javax.swing.event.*;
 import java.sql.*;
 
 public class Menu implements ItemListener {
@@ -25,7 +24,13 @@ public class Menu implements ItemListener {
     private JTextField todo = new JTextField(20);
     private JButton newToDoButton = new JButton("add to do item");
     
-    public void addComponentToPane(Container pane, User current, final Calendar curcal, final ToDoList curlist) {
+    private DefaultListModel listModel = new DefaultListModel();
+    private JList list = new JList(listModel);
+    
+    private ToDoList curlist;
+    private Calendar curcal;
+    
+    public void addComponentToPane(Container pane, User current, Calendar incal, ToDoList inlist) {
         JPanel comboBoxPane = new JPanel();
         String comboBoxItems[] = { CALENDARPANEL, GROUPSPANEL, TODOPANEL };
         JComboBox cb = new JComboBox(comboBoxItems);
@@ -33,10 +38,17 @@ public class Menu implements ItemListener {
         cb.addItemListener(this);
         comboBoxPane.add(cb);
         
+        curlist = inlist;
+        curcal = incal;
+        
+        final JPanel calcard = new JPanel();
+        
         newEventButton.addActionListener(
         	new ActionListener() {
         		public void actionPerformed( ActionEvent e) {
         			new Event(curcal, event.getText(), Date.valueOf("2017-05-01"), Date.valueOf("2017-05-02"), place.getText());
+        			//calcard.add(new JLabel(event.getText() + " from " + Date.valueOf("2017-05-01") + " until " + Date.valueOf("2017-05-02") + " at " + place.getText()));
+        			//calcard.setVisible(true);
         		}
         	}
         );        
@@ -46,11 +58,16 @@ public class Menu implements ItemListener {
            		public void actionPerformed( ActionEvent e) {
            			//query todo list
            			curlist.addItem(todo.getText());
+           			System.out.println("Insert Completed");
+           			listModel.addElement(todo.getText());
+           			int index = list.getHeight();
+           			todo.requestFocusInWindow();
+           			todo.setText("");
+           			list.ensureIndexIsVisible(index);
            		}
           	}
         );
         
-        JPanel calcard = new JPanel();
         calcard.add(new JLabel("Calendar"));
         calcard.add(eventl);
         calcard.add(event);
@@ -85,19 +102,11 @@ public class Menu implements ItemListener {
         todocard.add(todo);
         todocard.add(newToDoButton);
         
-        /*
-        DefaultListModel listModel = new DefaultListModel();
-        listModel.addElement("do things");
-        listModel.addElement("do more things");
-        JList list = new JList(listModel);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.setSelectedIndex(0);
-        list.addListSelectionListener((ListSelectionListener) this);
         list.setVisibleRowCount(5);
         JScrollPane listScrollPane = new JScrollPane(list);
-        todocard.add(listScrollPane);
-        */
-        
+        todocard.add(listScrollPane, BorderLayout.CENTER);
+                
         
         
         
