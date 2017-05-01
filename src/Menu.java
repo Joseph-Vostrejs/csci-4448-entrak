@@ -10,7 +10,12 @@ public class Menu implements ItemListener {
     final static String GROUPSPANEL = "groups";
     final static String TODOPANEL = "to do list";
     
-
+    private JTextField username = new JTextField(20);
+    private JTextField group = new JTextField(20);
+    private JLabel usernamel = new JLabel("user to be added:");
+    private JLabel groupl = new JLabel("group to add to:");
+    private JButton addMemberButton = new JButton("add member");
+    
     private JTextField event = new JTextField(20);
     private JTextField start = new JTextField();
     private JTextField end = new JTextField();
@@ -23,6 +28,7 @@ public class Menu implements ItemListener {
     
     private JTextField todo = new JTextField(20);
     private JButton newToDoButton = new JButton("add to do item");
+    private JButton completedToDoButton = new JButton("completed task");//this is a dummy button
     
     private DefaultListModel listModel = new DefaultListModel();
     private JList list = new JList(listModel);
@@ -68,7 +74,7 @@ public class Menu implements ItemListener {
           	}
         );
         
-        calcard.add(new JLabel("Calendar"));
+        calcard.add(new JLabel("My Calendar"));
         calcard.add(eventl);
         calcard.add(event);
         calcard.add(startl);
@@ -95,17 +101,24 @@ public class Menu implements ItemListener {
         
         
         JPanel groupcard = new JPanel();
-        groupcard.add(new JLabel("Groups"));
+        //groupcard.add(new JLabel("Groups"));
+        groupcard.add(usernamel);
+        groupcard.add(username);
+        groupcard.add(groupl);
+        groupcard.add(group);
+        groupcard.add(addMemberButton);
         
         JPanel todocard = new JPanel();
-        todocard.add(new JLabel("To Do List"));
+        todocard.add(new JLabel("To Do-"));
         todocard.add(todo);
         todocard.add(newToDoButton);
-        
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setVisibleRowCount(5);
         JScrollPane listScrollPane = new JScrollPane(list);
         todocard.add(listScrollPane, BorderLayout.CENTER);
+        
+        todocard.add(completedToDoButton);
+        
                 
         
         
