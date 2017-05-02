@@ -3,6 +3,10 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.sql.*;
+//import java.util.Date; 
+//import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+//import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+//import net.sourceforge.jdatepicker.impl.UtilDateModel;
 
 public class Menu implements ItemListener {
     JPanel cards;
@@ -25,6 +29,9 @@ public class Menu implements ItemListener {
     private JLabel endl = new JLabel("end:");
     private JLabel placel = new JLabel("location:");
     private JButton newEventButton = new JButton("add event");
+    //private UtilDateModel model = new UtilDateModel();
+    //private JDatePanelImpl datePanel = new JDatePanelImpl(model);
+    //private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
     
     private JTextField todo = new JTextField(20);
     private JButton newToDoButton = new JButton("add to do item");
@@ -149,6 +156,7 @@ public class Menu implements ItemListener {
         //Display the window.
         frame.pack();
         frame.setVisible(true);
+        //frame.add(datePicker);
     }
     
 }
